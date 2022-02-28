@@ -31,18 +31,20 @@ public class User implements Serializable {
     @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Person person;
-    public User(Integer id, String login, String email, String password) {
+    public User(Integer id, String login, String email, String password, Userperfil perfil) {
         this.id = id;
         this.login = login;
         this.email = email;
         this.password = password;
-        addPerfil(Userperfil.STUDENT);
+        addPerfil(perfil);
 
     }
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PERFIS_USER")
     private Set<Integer> perfis = new HashSet<>();
+
+
 
 
     public Set<Userperfil> getPerfis() {

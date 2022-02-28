@@ -50,7 +50,7 @@ public class StudentServices {
 
     public Student fromDTO(StudenteNewDTO objDto) {
 
-        User user = new User(null, objDto.getLogin(),objDto.getEmail(), objDto.getPassword());
+        User user = new User(null, objDto.getLogin(),objDto.getEmail(), objDto.getPassword(), Userperfil.STUDENT);
 
         Student student = new Student(null, objDto.getName(), objDto.getCpf(), objDto.getBirthDate(), objDto.getPhoto(), objDto.getPhoneNumber(), user, objDto.getStudentRegistration());
 
