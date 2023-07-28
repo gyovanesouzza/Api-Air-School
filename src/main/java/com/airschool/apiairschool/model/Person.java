@@ -29,6 +29,8 @@ public class Person implements Serializable {
     private Date birthDate;
     private String photo;
     private String phoneNumber;
+    private byte statusActive;
+
 
     @JsonManagedReference
     @OneToMany(mappedBy="person", cascade=CascadeType.ALL)
@@ -39,7 +41,17 @@ public class Person implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    public Person(Integer id, String name, String cpf, Date birthDate, String photo, String phoneNumber, User user) {
+    public Person(Integer id, String name, String cpf, Date birthDate, String photo, String phoneNumber, byte statusActive) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.birthDate = birthDate;
+        this.photo = photo;
+        this.phoneNumber = phoneNumber;
+        this.statusActive = statusActive;
+    }
+
+    public Person(Integer id, String name, String cpf, Date birthDate, String photo, String phoneNumber, User user, byte statusActive) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -47,5 +59,7 @@ public class Person implements Serializable {
         this.photo = photo;
         this.phoneNumber = phoneNumber;
         this.user = user;
+        this.statusActive = statusActive;
+
     }
 }

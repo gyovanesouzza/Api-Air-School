@@ -32,12 +32,12 @@ public class ApiAirSchoolApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User u1 = new User(null, "prof", "prof@g", "33kff", Userperfil.TEACHER);
-        Employee e1 = new Employee(null, "Pro", "22", null, "", "", u1, 121332L, EmployeeType.TEACHER);
-        u1.setPerson(e1);
-
-        userRepository.save(u1);
-        employeeRepository.save(e1);
+//        User u1 = new User(null, "prof", "prof@g", "33kff", Userperfil.TEACHER);
+//        Employee e1 = new Employee(null, "Pro", "22", null, "", "", u1, 121332L, EmployeeType.TEACHER);
+//        u1.setPerson(e1);
+//
+//        userRepository.save(u1);
+//        employeeRepository.save(e1);
 
     }
 }
