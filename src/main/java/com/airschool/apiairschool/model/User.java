@@ -27,15 +27,17 @@ public class User implements Serializable {
     private String login;
     private String email;
     private String password;
+    private byte status;
 
     @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Person person;
-    public User(Integer id, String login, String email, String password, Userperfil perfil) {
+    public User(Integer id, String login, String email, String password, Userperfil perfil, byte status) {
         this.id = id;
         this.login = login;
         this.email = email;
         this.password = password;
+        this.status = status;
         addPerfil(perfil);
 
     }
