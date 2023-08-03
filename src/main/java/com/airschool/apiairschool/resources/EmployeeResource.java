@@ -1,13 +1,9 @@
 package com.airschool.apiairschool.resources;
 
 import com.airschool.apiairschool.model.Employee;
-import com.airschool.apiairschool.model.Student;
 import com.airschool.apiairschool.model.dto.EmployeeDTO;
 import com.airschool.apiairschool.model.dto.EmployeeNewDTO;
-import com.airschool.apiairschool.model.dto.StudenteNewDTO;
-import com.airschool.apiairschool.model.dto.StudenteUpdateDTO;
 import com.airschool.apiairschool.services.EmployeeServices;
-import com.airschool.apiairschool.services.StudentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +28,6 @@ public class EmployeeResource {
     }
 
     @RequestMapping(value = "/teachers", method = RequestMethod.GET)
-
     public ResponseEntity<List<Employee>> findAllTeachers() {
 
         List<Employee> objs = employeeServices.findAllTeachers();
@@ -52,9 +47,9 @@ public class EmployeeResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody EmployeeNewDTO objDto) {
-        Employee obj = employeeServices.fromDTO(objDto);
+    @RequestMapping(value = "/teachers", method = RequestMethod.POST)
+    public ResponseEntity<Void> insertTeacher(@RequestBody EmployeeNewDTO objDto) {
+        Employee obj = employeeServices.fromDTOTeacher(objDto);
         obj = employeeServices.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();

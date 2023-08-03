@@ -14,13 +14,11 @@ import java.util.Date;
 @Setter
 public class EmployeeNewDTO implements Serializable {
 
-    private Long functionalNumber;
     private String name;
     private String cpf;
     private Date birthDate;
     private String photo;
     private String phoneNumber;
-    private String responsibility;
 
 
     private String zipCode;
@@ -35,7 +33,6 @@ public class EmployeeNewDTO implements Serializable {
     }
 
     public EmployeeNewDTO(Employee employee, Address address , User user) {
-        this.functionalNumber = employee.getFunctionalNumber();
         this.name = employee.getName();
         this.cpf = employee.getCpf();
         this.birthDate = employee.getBirthDate();

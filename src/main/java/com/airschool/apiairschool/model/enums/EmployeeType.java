@@ -30,4 +30,18 @@ public enum EmployeeType {
 
         throw new IllegalArgumentException("Id inválido: " + id);
     }
+    public static EmployeeType toEnum(String type) {
+
+        if (type == null) {
+            return null;
+        }
+
+        for (EmployeeType x : EmployeeType.values()) {
+            if (type.equals(x.getDescription())) {
+                return x;
+            }
+        }
+
+        throw new IllegalArgumentException("Type inválido: " + type);
+    }
 }

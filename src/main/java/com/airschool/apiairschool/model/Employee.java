@@ -1,8 +1,6 @@
 package com.airschool.apiairschool.model;
 
 import com.airschool.apiairschool.model.enums.EmployeeType;
-import com.airschool.apiairschool.model.enums.Userperfil;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.Getter;
@@ -14,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,7 +37,7 @@ public class Employee extends Person implements Serializable {
     private Set<Activity> activities;
 
     @JsonIgnore
-    @OneToMany( mappedBy = "coordinatingTeacher",
+    @OneToMany(mappedBy = "coordinatingTeacher",
             cascade = CascadeType.ALL)
     private Set<Classe> coordinationRooms;
 
@@ -51,6 +50,10 @@ public class Employee extends Person implements Serializable {
         this.functionalNumber = functionalNumber;
         addPerfil(perfis);
     }
+    public Employee(Integer id, String name, String cpf, Date birthDate, String photo, String phoneNumber, User user,EmployeeType perfis, byte statusActive) {
+        super(id, name, cpf, birthDate, photo, phoneNumber, user, statusActive);
+        addPerfil(perfis);
+    }
 
     public Set<EmployeeType> getPerfis() {
         return perfis.stream().map(x -> EmployeeType.toEnum(x)).collect(Collectors.toSet());
@@ -59,4 +62,13 @@ public class Employee extends Person implements Serializable {
     public void addPerfil(EmployeeType employeeType) {
         perfis.add(employeeType.getId());
     }
+
+    public Long functionalGenerator(Long lastFunctionalNumber) {
+        if(lastFunctionalNumber ==null){
+            return 1L;
+        }
+        return lastFunctionalNumber+1;
+
+    }
+
 }

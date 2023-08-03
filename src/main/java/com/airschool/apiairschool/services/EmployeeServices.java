@@ -2,7 +2,6 @@ package com.airschool.apiairschool.services;
 
 import com.airschool.apiairschool.model.Address;
 import com.airschool.apiairschool.model.Employee;
-import com.airschool.apiairschool.model.Student;
 import com.airschool.apiairschool.model.User;
 import com.airschool.apiairschool.model.dto.EmployeeDTO;
 import com.airschool.apiairschool.model.dto.EmployeeNewDTO;
@@ -54,6 +53,7 @@ public class EmployeeServices {
     public Employee insert(Employee obj) {
         obj.setId(null);
         userRepository.save(obj.getUser());
+        obj.setFunctionalNumber(obj.functionalGenerator(employeeRepository.getLastFunctionalNumber()));
         obj = employeeRepository.save(obj);
         addressRepository.saveAll(obj.getAddress());
 
@@ -77,11 +77,11 @@ public class EmployeeServices {
         return obj;
     }
 
-    public Employee fromDTO(EmployeeNewDTO objDto) {
+    public Employee fromDTOTeacher(EmployeeNewDTO objDto) {
 
-        User user = new User(null, objDto.getLogin(), objDto.getEmail(), objDto.getPassword(), Userperfil.valueOf(objDto.getResponsibility()), (byte) 1);
+        User user = new User(null, objDto.getLogin(), objDto.getEmail(), objDto.getPassword(), Userperfil.toEnum("Teacher"), (byte) 2);
 
-        Employee employee = new Employee(null, objDto.getName(), objDto.getCpf(), objDto.getBirthDate(), objDto.getPhoto(), objDto.getPhoneNumber(), user, objDto.getFunctionalNumber(), EmployeeType.valueOf(objDto.getResponsibility()), (byte) 1);
+        Employee employee = new Employee(null, objDto.getName(), objDto.getCpf(), objDto.getBirthDate(), objDto.getPhoto(), objDto.getPhoneNumber(), user, EmployeeType.toEnum("Teacher"), (byte) 1);
 
         Address address = new Address(null, objDto.getZipCode(), objDto.getNumber(), objDto.getComplement(), employee);
 

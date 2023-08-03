@@ -12,7 +12,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-
+.idea
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -155,5 +155,12 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+
+
+Api Air School.iml
+BD.drawio
+HELP.md
+
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,maven

@@ -12,7 +12,7 @@ public enum Userperfil {
     private int id;
     private String description;
 
-    private Userperfil(int id, String description) {
+    Userperfil(int id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -30,5 +30,19 @@ public enum Userperfil {
         }
 
         throw new IllegalArgumentException("Id inválido: " + id);
+    }
+    public static Userperfil  toEnum(String type) {
+
+        if (type == null) {
+            return null;
+        }
+
+        for (Userperfil x : Userperfil.values()) {
+            if (type.equals(x.getDescription())) {
+                return x;
+            }
+        }
+
+        throw new IllegalArgumentException("Type inválido: " + type);
     }
 }
