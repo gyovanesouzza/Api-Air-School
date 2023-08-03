@@ -5,6 +5,7 @@ import com.airschool.apiairschool.model.dto.ClasseNewDTO;
 import com.airschool.apiairschool.model.enums.ClasseType;
 import com.airschool.apiairschool.repositories.ClasseRepository;
 import com.airschool.apiairschool.repositories.EmployeeRepository;
+import com.airschool.apiairschool.services.exceptions.ObjectDuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,11 @@ public class ClasseServices {
     }
 
     public Classe insert(Classe obj) {
+        Optional<Classe> classe = classeRepository.findByLetterIsAndYearClasseIsAndYearIs(obj.getLetter(), obj.getYearClasse(), obj.getYear());
+        if(!classe.isEmpty()){
+            throw new ObjectDuplicateException("Class already exists");
+        }
+
         return classeRepository.save(obj);
     }
 }
